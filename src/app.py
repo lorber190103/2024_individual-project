@@ -1,7 +1,8 @@
 from flask import Flask, render_template
+from werkzeug.exceptions import HTTPException
 
-from src.model import Deals, db, Games
-from src.main import CRUD
+from src.model import Deals, db, Games, Stores
+from src.main import CheapShark
 
 app = Flask(__name__)
 
@@ -15,14 +16,17 @@ with app.app_context():
 
 @app.route("/")
 def home():
-    activator = CRUD()
-    activator.Populate_Database()
     return render_template("home.html")
 
 
 @app.route("/Current_Deals")
 def current_deals():
-    return render_template("home.html")
+    choice = "current_deals"
+    activator = CheapShark()
+    activator.JSON(choice)
+    activator.Populate_Database(choice)
+    deals = db.session.execute(db.select(Deals)).scalars()
+    return render_template("home.html", deals=deals)
 
 
 @app.route("/Search_for_Deal")
@@ -30,6 +34,19 @@ def search_for_deals():
     return render_template("home.html")
 
 
-@app.route("/Game")
+@app.route("/Stores")
 def games():
-    return render_template("home.html")
+    choice = "stores"
+    activator = CheapShark()
+    activator.JSON(choice)
+    activator.Populate_Database(choice)
+    stores = db.session.execute(db.select(Stores)).scalars()
+    return render_template("stores.html", stores=stores)
+
+
+@app.errorhandler(Exception)
+def handle_exception(exception):
+    if isinstance(exception, HTTPException):
+        return exception
+
+    return render_template("error.html", exception=exception), 500

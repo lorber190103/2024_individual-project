@@ -14,28 +14,18 @@
 <html>
     <main>
       <div class="center-box">
-        <table id="myTable" class="deals-table">
+        <table id="myTable" class="stores-table">
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Deal ID</th>
-              <th>Sale Price</th>
-              <th>Store ID</th>
-              <th>Normal Price</th>
-              <th>On Sale</th>
-              <th>Savings</th>
+              <th>ID</th>
+              <th>Store</th>
             </tr>
           </thead>
           <tbody>
-            {% for deal in deals %}
+            {% for store in stores %}
               <tr>
-                <td>{{ deal.title }}</td>
-                <td>{{ deal.deal_id }}</td>
-                <td>{{ deal.sale_price }}</td>
-                <td>{{ deal.store_id }}</td>
-                <td>{{ deal.normal_price }}</td>
-                <td>{{ deal.on_sale }}</td>
-                <td>{{ deal.savings }}</td>
+                <td>{{ store.ID }}</td>
+                <td>{{ store.store_name }}</td>
               </tr>
             {% endfor %}
           </tbody>
