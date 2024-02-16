@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from werkzeug.exceptions import HTTPException
 
 from src.model import Deals, db, Games, Stores
@@ -29,9 +29,17 @@ def current_deals():
     return render_template("home.html", deals=deals)
 
 
-@app.route("/Search_for_Deal")
+@app.route("/Search_for_Deal", methods=["GET", "POST"])
 def search_for_deals():
-    return render_template("home.html")
+    search = ""
+    if request.method == "POST":
+        search = request.form.get("deal")
+    choice = "search_for_deals"
+    activator = CheapShark()
+    activator.JSON(choice, search)
+    activator.Populate_Database(choice)
+    deals = db.session.query(Deals.title.like(f'%{search}%'))
+    return render_template("search_for_deal.html", deals=deals)
 
 
 @app.route("/Stores")
