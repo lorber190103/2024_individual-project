@@ -13,6 +13,7 @@ db = SQLAlchemy(model_class=Base)
 class Stores(db.Model):
     ID: Mapped[int] = mapped_column(primary_key=True)
     store_name: Mapped[str] = mapped_column(nullable=False)
+    store_is_active: Mapped[bool] = mapped_column(nullable=False)
 
 
 class Games(db.Model):

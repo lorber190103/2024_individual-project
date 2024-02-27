@@ -74,12 +74,14 @@ class CheapShark:
                 for entry in data:
                     _store_id = entry.get("storeID")
                     _store_name = entry.get("storeName")
+                    _store_is_active = entry.get("isActive")
 
                     existing_store = Stores.query.filter_by(ID=_store_id).first()
                     if not existing_store:
                         db.session.add(Stores(
                             ID=int(_store_id),
-                            store_name=str(_store_name)
+                            store_name=str(_store_name),
+                            store_is_active=bool(_store_is_active)
                         ))
 
             db.session.commit()

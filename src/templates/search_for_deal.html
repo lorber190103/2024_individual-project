@@ -1,49 +1,55 @@
 <!DOCTYPE html>
-<html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Game Deal Finder</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
 <body>
-    <!-- Navigation -->
+  <!-- Navigation -->
   <nav class="nav-bar">
     <a href="/" class="home-button">Home</a>
     <a href="/Current_Deals" class="current-deals-button">Current Deals</a>
     <a href="/Search_for_Deal" class="search-for-deals-button">Search for Deals</a>
     <a href="/Stores" class="game-button">Stores</a>
     <form action="{{ url_for("search_for_deals")}}" method="post">
-    <input type="text" name="deal" placeholder="Search..">
-    <button type="submit">Search</button>
+      <input type="text" name="deal" placeholder="Search..">
+      <button type="submit">Search</button>
+    </form>
   </nav>
-</body>
-<html>
-    <main>
-      <div class="center-box">
-        <table id="myTable" class="deals-table">
-          <thead>
+
+  <main>
+    <div class="center-box">
+      <table id="myTable" class="deals-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Link to Deal</th>
+            <th>Sale Price</th>
+            <th>Store ID</th>
+            <th>Normal Price</th>
+            <th>On Sale</th>
+            <th>Savings</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Example of deals data -->
+          <!-- Replace this part with your actual dynamic data -->
+          {% for deal in deals %}
             <tr>
-              <th>Title</th>
-              <th>Deal ID</th>
-              <th>Sale Price</th>
-              <th>Store ID</th>
-              <th>Normal Price</th>
-              <th>On Sale</th>
-              <th>Savings</th>
+              <td>{{ deal.title }}</td>
+              <td><a href="https://www.cheapshark.com/redirect?dealID={{ deal.deal_id }}">{{ deal.deal_id }}</a></td>
+              <td>{{ deal.sale_price }}</td>
+              <td>{{ deal.store_id }}</td>
+              <td>{{ deal.normal_price }}</td>
+              <td>{{ deal.on_sale }}</td>
+              <td>{{ deal.savings }}</td>
             </tr>
-          </thead>
-          <tbody>
-            {% for deal in deals %}
-              <tr>
-                <td>{{ deal.title }}</td>
-                <td>{{ deal.deal_id }}</td>
-                <td>{{ deal.sale_price }}</td>
-                <td>{{ deal.store_id }}</td>
-                <td>{{ deal.normal_price }}</td>
-                <td>{{ deal.on_sale }}</td>
-                <td>{{ deal.savings }}</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </main>
-  </body>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
 </html>

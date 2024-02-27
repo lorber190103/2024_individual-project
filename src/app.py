@@ -26,7 +26,7 @@ def current_deals():
     activator.JSON(choice)
     activator.Populate_Database(choice)
     deals = db.session.execute(db.select(Deals)).scalars()
-    return render_template("home.html", deals=deals)
+    return render_template("current_deals.html", deals=deals)
 
 
 @app.route("/Search_for_Deal", methods=["GET", "POST"])
@@ -34,10 +34,10 @@ def search_for_deals():
     search = ""
     if request.method == "POST":
         search = request.form.get("deal")
-    choice = "search_for_deals"
-    activator = CheapShark()
-    activator.JSON(choice, search)
-    activator.Populate_Database(choice)
+        choice = "search_for_deals"
+        activator = CheapShark()
+        activator.JSON(choice, search)
+        activator.Populate_Database(choice)
     deals = db.session.query(Deals).filter(Deals.title.like(f'%{search}%')).all()
     return render_template("search_for_deal.html", deals=deals)
 
