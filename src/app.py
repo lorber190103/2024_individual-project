@@ -38,7 +38,7 @@ def search_for_deals():
     activator = CheapShark()
     activator.JSON(choice, search)
     activator.Populate_Database(choice)
-    deals = db.session.query(Deals.title.like(f'%{search}%'))
+    deals = db.session.query(Deals).filter(Deals.title.like(f'%{search}%')).all()
     return render_template("search_for_deal.html", deals=deals)
 
 
