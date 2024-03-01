@@ -25,7 +25,9 @@ def current_deals():
     activator = CheapShark()
     activator.JSON(choice)
     activator.Populate_Database(choice)
-    deals = db.session.execute(db.select(Deals)).scalars()
+    deals = db.session.query(Deals).filter(Deals.savings >= 0.1
+                                           ).join(Stores, Deals.store_id == Stores.ID
+                                                  ).all()
     return render_template("current_deals.html", deals=deals)
 
 
@@ -38,7 +40,9 @@ def search_for_deals():
         activator = CheapShark()
         activator.JSON(choice, search)
         activator.Populate_Database(choice)
-    deals = db.session.query(Deals).filter(Deals.title.like(f'%{search}%')).all()
+    deals = db.session.query(Deals).filter(Deals.title.like(f'%{search}%')
+                                           ).join(Stores, Deals.store_id == Stores.ID
+                                                  ).all()
     return render_template("search_for_deal.html", deals=deals)
 
 

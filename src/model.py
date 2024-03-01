@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
 class Base(DeclarativeBase):
@@ -35,3 +35,8 @@ class Deals(db.Model):
     normal_price: Mapped[float] = mapped_column(nullable=False)
     on_sale: Mapped[bool] = mapped_column(nullable=False)
     savings: Mapped[float] = mapped_column(nullable=False)
+
+    store = relationship("Stores", back_populates="deals")
+
+
+Stores.deals = relationship("Deals", back_populates="store")

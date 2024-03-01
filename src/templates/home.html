@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Game Deal Finder</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav-bar">
+    <a href="/" class="home-button">Home</a>
+    <a href="/Current_Deals" class="current-deals-button">Current Deals</a>
+    <a href="/Search_for_Deal" class="search-for-deals-button">Search for Deals</a>
+    <a href="/Stores" class="game-button">Stores</a>
+    <form action="{{ url_for("search_for_deals")}}" method="post">
+      <input type="text" name="deal" placeholder="Search..">
+      <button type="submit">Search</button>
+    </form>
+  </nav>
+</body>
+</html>
