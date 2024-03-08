@@ -35,6 +35,7 @@ class Deals(db.Model):
     normal_price: Mapped[float] = mapped_column(nullable=False)
     on_sale: Mapped[bool] = mapped_column(nullable=False)
     savings: Mapped[float] = mapped_column(nullable=False)
+    timestamp: Mapped[int] = mapped_column(nullable=False)
 
     store = relationship("Stores", back_populates="deals")
 

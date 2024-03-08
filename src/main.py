@@ -53,11 +53,20 @@ class CheapShark:
                             sale_price=float(_sale_price),
                             store_id=int(_store_id),
                             normal_price=float(_normal_price),
-                            on_sale=bool(_on_sale),
+                            on_sale=bool(int(_on_sale)),
                             savings=float(_savings),
                             game_id=int(_game_id),
-                            deal_id=str(_deal_id)
+                            deal_id=str(_deal_id),
+                            timestamp=int(time.time())
                         ))
+                    else:
+                        existing_deal_id.title = str(_title)
+                        existing_deal_id.sale_price = float(_sale_price)
+                        existing_deal_id.store_id = int(_store_id)
+                        existing_deal_id.normal_price = float(_normal_price)
+                        existing_deal_id.on_sale = bool(int(_on_sale))
+                        existing_deal_id.savings = float(_savings)
+                        existing_deal_id.timestamp = int(time.time())
 
                     existing_games = Games.query.filter_by(ID=_game_id).first()
                     if not existing_games:
@@ -69,6 +78,12 @@ class CheapShark:
                             steam_rating_count=int(_steam_rating_count),
                             release_date=str(time.ctime(_release_date))
                         ))
+                    else:
+                        existing_games.metacritic_score = int(_metacritic_score)
+                        existing_games.steam_rating_text = str(_steam_rating_text)
+                        existing_games.steam_rating_percent = float(_steam_rating_percent)
+                        existing_games.steam_rating_count = int(_steam_rating_count)
+                        existing_games.release_date = str(time.ctime(_release_date))
 
             if choice == "stores":
                 for entry in data:
@@ -83,5 +98,8 @@ class CheapShark:
                             store_name=str(_store_name),
                             store_is_active=bool(_store_is_active)
                         ))
+                    else:
+                        existing_store.store_name = str(_store_name)
+                        existing_store.store_is_active = bool(_store_is_active)
 
             db.session.commit()

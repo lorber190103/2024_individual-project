@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from werkzeug.exceptions import HTTPException
 
-from src.model import Deals, db, Games, Stores
+from src.model import Deals, db, Stores
 from src.main import CheapShark
 
 app = Flask(__name__)
@@ -27,7 +27,8 @@ def current_deals():
     activator.Populate_Database(choice)
     deals = db.session.query(Deals).filter(Deals.savings >= 0.1
                                            ).join(Stores, Deals.store_id == Stores.ID
-                                                  ).all()
+                                                  ).order_by(Deals.timestamp.desc()
+                                                             ).all()
     return render_template("current_deals.html", deals=deals)
 
 
