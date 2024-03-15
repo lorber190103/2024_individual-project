@@ -36,7 +36,7 @@
         <tbody>
           {% for deal in deals %}
             <tr>
-              <td>{{ deal.title }}</td>
+              <td> <a href="/Game_Info/{{ deal.game_id }}">{{ deal.title }}</a></td>
               <td><a href="https://www.cheapshark.com/redirect?dealID={{ deal.deal_id }}">{{ deal.deal_id }}</a></td>
               <td>{{ deal.sale_price }}</td>
               <td>{{ deal.store.store_name }}</td>

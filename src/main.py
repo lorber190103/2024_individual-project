@@ -41,10 +41,12 @@ class CheapShark:
                     _on_sale = entry.get("isOnSale")
                     _savings = entry.get("savings")
                     _metacritic_score = entry.get("metacriticScore")
+                    _metacritic_link = entry.get("metacriticLink")
                     _steam_rating_text = entry.get("steamRatingText")
                     _steam_rating_percent = entry.get("steamRatingPercent")
                     _steam_rating_count = entry.get("steamRatingCount")
                     _release_date = entry.get("releaseDate")
+                    _last_change = entry.get("lastChange")
 
                     existing_deal_id = Deals.query.filter_by(deal_id=_deal_id).first()
                     if not existing_deal_id:
@@ -73,17 +75,21 @@ class CheapShark:
                         db.session.add(Games(
                             ID=int(_game_id),
                             metacritic_score=int(_metacritic_score),
+                            metacritic_link=str(_metacritic_link),
                             steam_rating_text=str(_steam_rating_text),
-                            steam_rating_percent=float(_steam_rating_percent),
+                            steam_rating_percent=int(_steam_rating_percent),
                             steam_rating_count=int(_steam_rating_count),
-                            release_date=str(time.ctime(_release_date))
+                            release_date=str(time.ctime(_release_date)),
+                            last_change=str(time.ctime(_last_change))
                         ))
                     else:
                         existing_games.metacritic_score = int(_metacritic_score)
+                        existing_games.metacritic_link = str(_metacritic_link)
                         existing_games.steam_rating_text = str(_steam_rating_text)
-                        existing_games.steam_rating_percent = float(_steam_rating_percent)
+                        existing_games.steam_rating_percent = int(_steam_rating_percent)
                         existing_games.steam_rating_count = int(_steam_rating_count)
                         existing_games.release_date = str(time.ctime(_release_date))
+                        existing_games.last_change = str(time.ctime(_last_change))
 
             if choice == "stores":
                 for entry in data:

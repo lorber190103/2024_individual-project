@@ -15,14 +15,20 @@ class Stores(db.Model):
     store_name: Mapped[str] = mapped_column(nullable=False)
     store_is_active: Mapped[bool] = mapped_column(nullable=False)
 
+    deals = relationship("Deals", back_populates="store")
+
 
 class Games(db.Model):
     ID: Mapped[int] = mapped_column(primary_key=True)
     metacritic_score: Mapped[int]
+    metacritic_link: Mapped[str]
     steam_rating_text: Mapped[str]
-    steam_rating_percent: Mapped[float]
+    steam_rating_percent: Mapped[int]
     steam_rating_count: Mapped[int]
     release_date: Mapped[str]
+    last_change: Mapped[str]
+
+    deals = relationship("Deals", back_populates="game")
 
 
 class Deals(db.Model):
@@ -38,6 +44,4 @@ class Deals(db.Model):
     timestamp: Mapped[int] = mapped_column(nullable=False)
 
     store = relationship("Stores", back_populates="deals")
-
-
-Stores.deals = relationship("Deals", back_populates="store")
+    game = relationship("Games", back_populates="deals")

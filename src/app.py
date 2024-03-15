@@ -51,7 +51,9 @@ def search_for_deals():
 
 @app.route("/Game_Info/<int:game_id>")
 def game_info(game_id):
-    info = db.session.query(Games).filter(Games.ID == game_id).all()
+    info = db.session.query(Games).filter(Games.ID == game_id
+                                          ).join(Deals, Games.ID == Deals.game_id
+                                                 ).all()
     return render_template("game_info.html", game_info=info)
 
 
