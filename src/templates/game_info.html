@@ -24,25 +24,23 @@
       <table id="myTable" class="deals-table">
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Link to Deal</th>
-            <th>Sale Price</th>
-            <th>Store</th>
-            <th>Normal Price</th>
-            <th>On Sale</th>
-            <th>Savings</th>
+            <th>ID</th>
+            <th>Metacritic</th>
+            <th>Steam Rating Text</th>
+            <th>Steam Rating Percent</th>
+            <th>Steam Rating Count</th>
+            <th>Release Date</th>
           </tr>
         </thead>
         <tbody>
-          {% for deal in deals %}
+          {% for game in game_info %}
             <tr>
-              <td>{{ deal.title }}</td>
-              <td><a href="https://www.cheapshark.com/redirect?dealID={{ deal.deal_id }}">{{ deal.deal_id }}</a></td>
-              <td>{{ deal.sale_price }}</td>
-              <td>{{ deal.store.store_name }}</td>
-              <td>{{ deal.normal_price }}</td>
-              <td>{{ deal.on_sale }}</td>
-              <td>{{ deal.savings }}</td>
+              <td>{{ game.ID }}</td>
+              <td>{{ game.metacritic_score }}</td>
+              <td>{{ game.steam_rating_text }}</td>
+              <td>{{ game.steam_rating_percent }}</td>
+              <td>{{ game.steam_rating_count }}</td>
+              <td>{{ game.release_date }}</td>
             </tr>
           {% endfor %}
         </tbody>
