@@ -24,7 +24,6 @@
       <table id="myTable" class="deals-table">
         <thead>
           <tr>
-            <th>Title</th>
             <th>Metacritic Score</th>
             <th>Metacritic Link</th>
             <th>Steam Rating Text</th>
@@ -37,7 +36,6 @@
         <tbody>
           {% for game in game_info %}
             <tr>
-              <td>{{ game.deal.title }}</td>
               <td>{{ game.metacritic_score }}</td>
               <td><a href="https://www.metacritic.com{{ game.metacritic_link }}">{{ game.metacritic_link }}</a></td>
               <td>{{ game.steam_rating_text }}</td>
@@ -46,7 +44,7 @@
               <td>{{ game.release_date }}</td>
               <td>{{ game.last_change }}</td>
             </tr>
-          {% endfor %}
+          {% endfor %}     
         </tbody>
       </table>
     </div>
