@@ -1,51 +1,54 @@
 <!DOCTYPE html>
 <html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+  <title>Deals Page</title>
+</head>
 <body>
-    <!-- Navigation -->
+  <!-- Navigation -->
   <nav class="nav-bar">
     <a href="/" class="home-button">Home</a>
     <a href="/Current_Deals" class="current-deals-button">Current Deals</a>
     <a href="/Search_for_Deal" class="search-for-deals-button">Search for Deals</a>
     <a href="/Stores" class="store-button">Stores</a>
-    <form action="{{ url_for("search_for_deals")}}" method="post">
-      <input type="text" name="deal" placeholder="Search..">
-      <button type="submit">Search</button>
+    <form action="{{ url_for("search_for_deals")}}" method="post" class="search-form">
+      <input type="text" name="deal" placeholder="Search.." class="search-input">
+      <button type="submit" class="search-button">Search</button>
     </form>
   </nav>
+
+  <main>
+    <div class="center-box">
+      <h1 class="deals-heading">Latest Deals</h1>
+      <table id="myTable" class="deals-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Link to Deal</th>
+            <th>Sale Price</th>
+            <th>Store</th>
+            <th>Normal Price</th>
+            <th>On Sale</th>
+            <th>Savings</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for deal in deals %}
+          <tr>
+            <td><a href="/Game_Info/{{ deal.game_id }}" class="deal-title">{{ deal.title }}</a></td>
+            <td><a href="https://www.cheapshark.com/redirect?dealID={{ deal.deal_id }}" class="deal-link">{{ deal.deal_id }}</a></td>
+            <td class="sale-price">{{ deal.sale_price }}</td>
+            <td class="store-name">{{ deal.store.store_name }}</td>
+            <td class="normal-price">{{ deal.normal_price }}</td>
+            <td class="on-sale">{{ deal.on_sale }}</td>
+            <td class="savings">{{ deal.savings }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
 </body>
-<html>
-    <main>
-      <div class="center-box">
-        <table id="myTable" class="deals-table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Link to Deal</th>
-              <th>Sale Price</th>
-              <th>Store</th>
-              <th>Normal Price</th>
-              <th>On Sale</th>
-              <th>Savings</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for deal in deals %}
-              <tr>
-                <td> <a href="/Game_Info/{{ deal.game_id }}">{{ deal.title }}</a></td>
-                <td> <a href="https://www.cheapshark.com/redirect?dealID={{ deal.deal_id }}">{{ deal.deal_id }}</a></td>
-                <td>{{ deal.sale_price }}</td>
-                <td>{{ deal.store.store_name }}</td>
-                <td>{{ deal.normal_price }}</td>
-                <td>{{ deal.on_sale }}</td>
-                <td>{{ deal.savings }}</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </main>
-  </body>
 </html>
