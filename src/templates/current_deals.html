@@ -19,7 +19,6 @@
   <nav class="nav-bar">
     <a href="/" class="home-button">Home</a>
     <a href="/Current_Deals" class="current-deals-button">Current Deals</a>
-    <a href="/Search_for_Deal" class="search-for-deals-button">Search for Deals</a>
     <a href="/Stores" class="store-button">Stores</a>
     <form action="{{ url_for("search_for_deals")}}" method="post" class="search-form">
       <input type="text" name="deal" placeholder="Search.." class="search-input">
@@ -46,7 +45,7 @@
           {% for deal in deals %}
           <tr>
             <td><a href="/Game_Info/{{ deal.game_id }}" class="deal-title">{{ deal.title }}</a></td>
-            <td><a href="https://www.cheapshark.com/redirect?dealID={{ deal.deal_id }}" class="deal-link">{{ deal.deal_id }}</a></td>
+            <td><a href="https://www.cheapshark.com/redirect?dealID={{ deal.deal_id }}" class="deal-link">View Deal</a></td>
             <td class="sale-price">{{ deal.sale_price }}€</td>
             <td class="store-name">{{ deal.store.store_name }}</td>
             <td class="normal-price">{{ deal.normal_price }}€</td>
