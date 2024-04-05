@@ -6,6 +6,14 @@
   <title>Video Game Deal Finder</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
+<style>
+  body {
+    background-color: #f8f8f8;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+  }
+</style>
 <body>
   <!-- Navigation -->
   <nav class="nav-bar">
@@ -35,17 +43,48 @@
         </thead>
         <tbody>
           {% for game in game_info %}
-            <tr>
+          <tr>
               <td>{{ game.title }}</td>
-              <td>{{ game.metacritic_score }}</td>
-              <td><a href="https://www.metacritic.com{{ game.metacritic_link }}">{{ game.metacritic_link }}</a></td>
-              <td>{{ game.steam_rating_text }}</td>
-              <td>{{ game.steam_rating_percent }}%</td>
-              <td>{{ game.steam_rating_count }}</td>
+              <td>
+                  {% if game.steam_rating_count == 0 %}
+                      -
+                  {% else %}
+                      {{ game.steam_rating_count }}
+                  {% endif %}
+              </td>
+              <td>
+                  {% if game.metacritic_link == "None" %}
+                      -
+                  {% else %}
+                      <a href="https://www.metacritic.com{{ game.metacritic_link }}">{{ game.metacritic_link }}</a>
+                  {% endif %}
+              </td>
+              <td>
+                  {% if game.steam_rating_text == "None" %}
+                      -
+                  {% else %}
+                      {{ game.steam_rating_text }}
+                  {% endif %}
+              </td>
+              <td>
+                  {% if game.steam_rating_percent == 0 %}
+                      -
+                  {% else %}
+                      {{ game.steam_rating_percent }}%
+                  {% endif %}
+              </td>
+              <td>
+                  {% if game.steam_rating_count == 0 %}
+                      -
+                  {% else %}
+                      {{ game.steam_rating_count }}
+                  {% endif %}
+              </td>
               <td>{{ game.release_date }}</td>
               <td>{{ game.last_change }}</td>
-            </tr>
-          {% endfor %}     
+          </tr>
+          {% endfor %}
+              
         </tbody>
       </table>
     </div>

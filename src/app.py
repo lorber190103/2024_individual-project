@@ -46,7 +46,8 @@ def search_for_deals():
     deals = db.session.query(Deals).filter(Deals.title.like(f'%{search}%')
                                            ).join(Stores, Deals.store_id == Stores.ID
                                                   ).all()
-    return render_template("search_for_deal.html", deals=deals)
+    search = request.form.get("deal", "")
+    return render_template("search_for_deal.html", deals=deals, search=search)
 
 
 @app.route("/Game_Info/<int:game_id>")

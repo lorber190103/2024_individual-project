@@ -6,6 +6,14 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
   <title>Deals Page</title>
 </head>
+<style>
+  body {
+    background-color: #f8f8f8;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+  }
+</style>
 <body>
   <!-- Navigation -->
   <nav class="nav-bar">
@@ -39,9 +47,9 @@
           <tr>
             <td><a href="/Game_Info/{{ deal.game_id }}" class="deal-title">{{ deal.title }}</a></td>
             <td><a href="https://www.cheapshark.com/redirect?dealID={{ deal.deal_id }}" class="deal-link">{{ deal.deal_id }}</a></td>
-            <td class="sale-price">{{ deal.sale_price }}</td>
+            <td class="sale-price">{{ deal.sale_price }}€</td>
             <td class="store-name">{{ deal.store.store_name }}</td>
-            <td class="normal-price">{{ deal.normal_price }}</td>
+            <td class="normal-price">{{ deal.normal_price }}€</td>
             <td class="on-sale">{{ deal.on_sale }}</td>
             <td class="savings">{{ deal.savings }}</td>
           </tr>

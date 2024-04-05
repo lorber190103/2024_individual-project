@@ -6,6 +6,14 @@
   <title>Video Game Deal Finder</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
+<style>
+  body {
+    background-color: #f8f8f8;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+  }
+</style>
 <body>
   <!-- Navigation -->
   <nav class="nav-bar">
@@ -21,6 +29,7 @@
 
   <main>
     <div class="center-box">
+      <h1 class="deals-heading">Results for "{{ search }}"</h1>
       <table id="myTable" class="deals-table">
         <thead>
           <tr>
@@ -38,9 +47,9 @@
             <tr>
               <td> <a href="/Game_Info/{{ deal.game_id }}">{{ deal.title }}</a></td>
               <td><a href="https://www.cheapshark.com/redirect?dealID={{ deal.deal_id }}">{{ deal.deal_id }}</a></td>
-              <td>{{ deal.sale_price }}</td>
+              <td>{{ deal.sale_price }}€</td>
               <td>{{ deal.store.store_name }}</td>
-              <td>{{ deal.normal_price }}</td>
+              <td>{{ deal.normal_price }}€</td>
               <td>{{ deal.on_sale }}</td>
               <td>{{ deal.savings }}</td>
             </tr>
