@@ -56,7 +56,7 @@ class CheapShark:
                             store_id=int(_store_id),
                             normal_price=float(_normal_price),
                             on_sale=bool(int(_on_sale)),
-                            savings=float(_savings),
+                            savings=round(float(_savings), 2),
                             game_id=int(_game_id),
                             deal_id=str(_deal_id),
                             timestamp=int(time.time())
@@ -67,7 +67,7 @@ class CheapShark:
                         existing_deal_id.store_id = int(_store_id)
                         existing_deal_id.normal_price = float(_normal_price)
                         existing_deal_id.on_sale = bool(int(_on_sale))
-                        existing_deal_id.savings = float(_savings)
+                        existing_deal_id.savings = round(float(_savings), 2)
                         existing_deal_id.timestamp = int(time.time())
 
                     existing_games = Games.query.filter_by(ID=_game_id).first()
