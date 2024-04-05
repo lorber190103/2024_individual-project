@@ -74,6 +74,7 @@ class CheapShark:
                     if not existing_games:
                         db.session.add(Games(
                             ID=int(_game_id),
+                            title=str(_title),
                             metacritic_score=int(_metacritic_score),
                             metacritic_link=str(_metacritic_link),
                             steam_rating_text=str(_steam_rating_text),
@@ -83,6 +84,7 @@ class CheapShark:
                             last_change=str(time.ctime(_last_change))
                         ))
                     else:
+                        existing_games.title = str(_title)
                         existing_games.metacritic_score = int(_metacritic_score)
                         existing_games.metacritic_link = str(_metacritic_link)
                         existing_games.steam_rating_text = str(_steam_rating_text)

@@ -20,6 +20,7 @@ class Stores(db.Model):
 
 class Games(db.Model):
     ID: Mapped[int] = mapped_column(primary_key=True)
+    title: Mapped[str]
     metacritic_score: Mapped[int]
     metacritic_link: Mapped[str]
     steam_rating_text: Mapped[str]
