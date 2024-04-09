@@ -23,6 +23,7 @@ class Games(db.Model):
     title: Mapped[str]
     metacritic_score: Mapped[int]
     metacritic_link: Mapped[str]
+    steam_app_id: Mapped[str]
     steam_rating_text: Mapped[str]
     steam_rating_percent: Mapped[int]
     steam_rating_count: Mapped[int]

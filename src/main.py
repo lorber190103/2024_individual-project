@@ -42,6 +42,7 @@ class CheapShark:
                     _savings = entry.get("savings")
                     _metacritic_score = entry.get("metacriticScore")
                     _metacritic_link = entry.get("metacriticLink")
+                    _steam_app_id = entry.get("steamAppID")
                     _steam_rating_text = entry.get("steamRatingText")
                     _steam_rating_percent = entry.get("steamRatingPercent")
                     _steam_rating_count = entry.get("steamRatingCount")
@@ -77,6 +78,7 @@ class CheapShark:
                             title=str(_title),
                             metacritic_score=int(_metacritic_score),
                             metacritic_link=str(_metacritic_link),
+                            steam_app_id=str(_steam_app_id),
                             steam_rating_text=str(_steam_rating_text),
                             steam_rating_percent=int(_steam_rating_percent),
                             steam_rating_count=int(_steam_rating_count),
@@ -87,6 +89,7 @@ class CheapShark:
                         existing_games.title = str(_title)
                         existing_games.metacritic_score = int(_metacritic_score)
                         existing_games.metacritic_link = str(_metacritic_link)
+                        existing_games.steam_app_id = str(_steam_app_id)
                         existing_games.steam_rating_text = str(_steam_rating_text)
                         existing_games.steam_rating_percent = int(_steam_rating_percent)
                         existing_games.steam_rating_count = int(_steam_rating_count)
