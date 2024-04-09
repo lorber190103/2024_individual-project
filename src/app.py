@@ -23,7 +23,7 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/Current_Deals")
+@app.route("/Deals")
 def current_deals():
     choice = "current_deals"
     activator.JSON(choice)
@@ -35,7 +35,7 @@ def current_deals():
     return render_template("current_deals.html", deals=deals)
 
 
-@app.route("/Search_for_Deal", methods=["GET", "POST"])
+@app.route("/Search", methods=["GET", "POST"])
 def search_for_deals():
     search = ""
     if request.method == "POST":
@@ -50,7 +50,7 @@ def search_for_deals():
     return render_template("search_for_deal.html", deals=deals, search=search)
 
 
-@app.route("/Game_Info/<int:game_id>")
+@app.route("/Game/<int:game_id>")
 def game_info(game_id):
     game_info = db.session.query(Games).filter(Games.ID == game_id).all()
     return render_template("game_info.html", game_info=game_info)
