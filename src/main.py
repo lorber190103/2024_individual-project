@@ -19,16 +19,21 @@ class CheapShark:
               f"{function_dict[choice.lower()]}" + \
               f"{search}"
 
-        get_data = requests.get(url)
-        data = get_data.json()
-        json_object = json.dumps(data, indent=3)
-        with open(self.filename, "w") as out_file:
-            out_file.write(json_object)
+        try:
+            get_data = requests.get(url)
+            data = get_data.json()
+            json_object = json.dumps(data, indent=3)
+            with open(self.filename, "w") as out_file:
+                out_file.write(json_object)
+        except Exception:
+            print("Exception caught")
+            return
 
     def Populate_Database(self, choice):
         data = json.load(open(self.filename))
         if data == []:
-            return 500
+            print("No available data")
+            return
         else:
             if choice == "current_deals" or choice == "search_for_deals":
                 for entry in data:
