@@ -25,9 +25,8 @@ class CheapShark:
             json_object = json.dumps(data, indent=3)
             with open(self.filename, "w") as out_file:
                 out_file.write(json_object)
-        except Exception:
-            print("Exception caught")
-            return
+        except Exception as e:
+            print(e)
 
     def Populate_Database(self, choice):
         data = json.load(open(self.filename))
