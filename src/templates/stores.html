@@ -17,8 +17,8 @@
     <a href="/" class="home-button">Home</a>
     <a href="/Deals" class="current-deals-button">Current Deals</a>
     <a href="/Stores" class="store-button">Stores</a>
-    <form action="{{ url_for("search_for_deals")}}" method="post">
-      <input type="text" name="deal" placeholder="Search..">
+    <form id="searchForm" action="{{ url_for("search_for_deals") }}" method="post">
+      <input type="text" name="deal" id="searchInput" placeholder="Search..">
       <button type="submit">Search</button>
     </form>
   </nav>
@@ -47,5 +47,13 @@
         </table>
       </div>
     </main>
+    <script>
+      document.getElementById("searchForm").addEventListener("submit", function(event) {
+        var searchInput = document.getElementById("searchInput").value.trim();
+        if (searchInput === "") {
+          event.preventDefault(); // Prevent form submission if search input is empty
+        }
+      });
+    </script>
   </body>
 </html>
