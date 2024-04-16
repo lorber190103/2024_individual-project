@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request
 from werkzeug.exceptions import HTTPException
 
-from src.main import CheapShark
-from src.model import Deals, Games, Stores, db
+from main import CheapShark
+from model import Deals, Games, Stores, db
 
 app = Flask(__name__)
 

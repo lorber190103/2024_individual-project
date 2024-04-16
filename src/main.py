@@ -3,7 +3,7 @@ import time
 
 import requests
 
-from src.model import Deals, Games, Stores, db
+from model import Deals, Games, Stores, db
 
 
 class CheapShark:
@@ -119,3 +119,13 @@ class CheapShark:
                         existing_store.store_is_active = bool(_store_is_active)
 
             db.session.commit()
+
+    def Delete_Value(self, table):
+        function_dict = {'deals': Deals,
+                         'games': Games,
+                         'stores': Stores}
+        try:
+            with db.session.begin_nested():
+                function_dict[table.lower()].query.delete()
+        except Exception as e:
+            print(e)
